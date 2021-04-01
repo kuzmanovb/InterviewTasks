@@ -35,15 +35,11 @@ namespace ZooTest
         {
             var monkey = new Monkey();
 
-            monkey.Hungry();
-            monkey.Hungry();
-            monkey.Hungry();
-            monkey.Hungry();
-            monkey.Hungry();
-            monkey.Hungry();
-            monkey.Hungry();
-            monkey.Hungry();
-            monkey.Hungry();
+            for (int i = 0; i < 8; i++)
+            {
+                monkey.Hungry();
+            }
+
 
             Assert.IsFalse(monkey.IsAlive);
         }
@@ -51,17 +47,14 @@ namespace ZooTest
         [Test]
         public void TestElephantCanNotWalkerMethod()
         {
-            var elephant = new Ålephant();
+            var elephant = new Elephant();
 
-            elephant.Hungry();
-            elephant.Hungry();
-            elephant.Hungry();
-            elephant.Hungry();
-            elephant.Hungry();
-            elephant.Hungry();
-            elephant.Hungry();
-            elephant.Hungry();
-            
+            for (int i = 0; i < 8; i++)
+            {
+
+                elephant.Hungry();
+            }
+
             Assert.IsTrue(elephant.CanNotWalker);
             Assert.IsFalse(elephant.IsAlive);
         }
@@ -91,16 +84,12 @@ namespace ZooTest
         {
             var lion = new Lion();
 
-            lion.Hungry();
-            lion.Hungry();
-            lion.Hungry();
-            lion.Hungry();
-            lion.Hungry();
-            lion.Hungry();
-            lion.Hungry();
-            lion.Hungry();
+            for (int i = 0; i < 9; i++)
+            {
             lion.Hungry();
 
+            }
+          
             Assert.IsFalse(lion.IsAlive);
         }
 

@@ -1,4 +1,5 @@
-﻿using Zoo.Model.Contract;
+﻿using System;
+using Zoo.Model.Contract;
 
 namespace Zoo.Model
 {
@@ -21,7 +22,13 @@ namespace Zoo.Model
             HealthPoints += food;
         }
 
-        public abstract void Hungry();
+        public virtual void Hungry()
+        {
+            Random rnd = new Random();
+            int hungry = rnd.Next(0, 20);
+
+            HealthPoints -= hungry;
+        }
 
     }
 }

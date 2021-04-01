@@ -2,10 +2,10 @@
 
 namespace Zoo.Model
 {
-    public class Еlephant : Animal
+    public class Elephant : Animal
     {
         private bool isAlive;
-        public Еlephant(int deadHealth = 0)
+        public Elephant(int deadHealth = 0)
                    : base(deadHealth)
         {
             this.IsAlive = true;

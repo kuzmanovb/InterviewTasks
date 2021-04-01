@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Zoo.Model
+﻿namespace Zoo.Model
 {
     public class Lion : Animal
     {
@@ -8,13 +6,6 @@ namespace Zoo.Model
         public Lion(int deadHealth = deadHealthLion)
                    : base(deadHealth)
         {
-        }
-        public override void Hungry()
-        {
-            Random rnd = new Random();
-            int hungry = rnd.Next(0, 20);
-
-            HealthPoints -= hungry;
         }
     }
 }

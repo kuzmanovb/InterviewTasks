@@ -9,13 +9,7 @@ namespace Zoo.Model
                    : base(deadHealth)
         {
         }
-        public override void Hungry()
-        {
-            Random rnd = new Random();
-            int hungry = rnd.Next(0, 20);
-
-            HealthPoints -= hungry;
-        }
+      
 
     }
 }

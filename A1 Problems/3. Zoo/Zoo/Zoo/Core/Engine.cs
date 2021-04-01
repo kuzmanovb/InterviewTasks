@@ -17,23 +17,24 @@ namespace Zoo.Core
 
         public void Run()
         {
-            IAnimal monkey1 = new Monkey();
-            IAnimal monkey2 = new Monkey();
-            IAnimal monkey3 = new Monkey();
-            IAnimal monkey4 = new Monkey();
-            IAnimal monkey5 = new Monkey();
 
-            IAnimal lion1 = new Monkey();
-            IAnimal lion2 = new Monkey();
-            IAnimal lion3 = new Monkey();
-            IAnimal lion4 = new Monkey();
-            IAnimal lion5 = new Monkey();
-
-            IAnimal elephant1 = new Monkey();
-            IAnimal elephant2 = new Monkey();
-            IAnimal elephant3 = new Monkey();
-            IAnimal elephant4 = new Monkey();
-            IAnimal elephant5 = new Monkey();
+            var animals = new IAnimal[15];
+            for (int i = 0; i < 15; i++)
+            {
+                if (i <= 5)
+                {
+                   animals[i] = new Monkey(); 
+                }
+                else if (i <= 10)
+                {
+                    animals[i] = new Lion();
+                }
+                else
+                {
+                    animals[i] = new Elephant();
+                }
+            }
+           
 
            while(true)
             {
@@ -49,22 +50,16 @@ namespace Zoo.Core
                     }
                     else if (command == "Feed")
                     {
-                        controller.FeedAnimals(monkey1, monkey2, monkey3, monkey4, monkey5,
-                                               lion1, lion2, lion3, lion4, lion5,
-                                               elephant1, elephant2, elephant3, elephant4, elephant5);
+                        controller.FeedAnimals(animals);
 
                     }
                     else if (command == "Hungry")
                     {
-                        controller.HungryAnimals(monkey1, monkey2, monkey3, monkey4, monkey5,
-                                               lion1, lion2, lion3, lion4, lion5,
-                                               elephant1, elephant2, elephant3, elephant4, elephant5);
+                        controller.HungryAnimals(animals);
                     }
                     else if (command == "Alive")
                     {
-                        Console.WriteLine(controller.AliveAnimals(monkey1, monkey2, monkey3, monkey4, monkey5,
-                                               lion1, lion2, lion3, lion4, lion5,
-                                               elephant1, elephant2, elephant3, elephant4, elephant5));
+                        Console.WriteLine(controller.AliveAnimals(animals));
 
                     }
                 }
