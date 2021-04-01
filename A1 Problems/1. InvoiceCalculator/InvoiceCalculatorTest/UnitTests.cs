@@ -22,10 +22,11 @@ namespace InvoiceCalculatorTest
             int mbOutEU = 0;
             decimal otherFee = 1.99m;
             decimal discount = 1.50m;
-
-
-            var result = Program.Result(monthlyFee, numberSms, numberMms, overIncludeMinutesA1, minutesToTelenor, minutesToVivacom,
+            var fees = new Fees(monthlyFee, numberSms, numberMms, overIncludeMinutesA1, minutesToTelenor, minutesToVivacom,
                                                 minutesInRoaming, overIncludeMb, mbInEU, mbOutEU, otherFee, discount);
+
+
+            var result = Program.Result(fees);
             Assert.AreEqual(14.71m, result);
         }
 
@@ -44,10 +45,11 @@ namespace InvoiceCalculatorTest
             int mbOutEU = 21;
             decimal otherFee = 1.99m;
             decimal discount = 1.50m;
+            var fees = new Fees(monthlyFee, numberSms, numberMms, overIncludeMinutesA1, minutesToTelenor, minutesToVivacom,
+                                               minutesInRoaming, overIncludeMb, mbInEU, mbOutEU, otherFee, discount);
 
+            var result = Program.Result(fees);
 
-            var result = Program.Result(monthlyFee, numberSms, numberMms, overIncludeMinutesA1, minutesToTelenor, minutesToVivacom,
-                                                minutesInRoaming, overIncludeMb, mbInEU, mbOutEU, otherFee, discount);
             Assert.AreEqual(29.05m, result);
         }
     }

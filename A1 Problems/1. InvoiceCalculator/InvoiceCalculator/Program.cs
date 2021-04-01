@@ -64,8 +64,10 @@ namespace InvoiceCalculator
                     decimal discount = decimal.Parse(Console.ReadLine());
                     Console.WriteLine();
 
-                    decimal invoiceSum = Result(monthlyFee, numberSms, numberMms, overIncludeMinutesA1, minutesToTelenor, minutesToVivacom,
+                    var feeds = new Fees(monthlyFee, numberSms, numberMms, overIncludeMinutesA1, minutesToTelenor, minutesToVivacom,
                                                 minutesInRoaming, overIncludeMb, mbInEU, mbOutEU, otherFee, discount);
+
+                    decimal invoiceSum = Result(feeds);
                     PrintResult(invoiceSum);
 
                     flag = false;
@@ -79,47 +81,46 @@ namespace InvoiceCalculator
         }
 
 
-        public static decimal Result(decimal monthlyFee, int numberSms, int numberMms, int overIncludeMinutesA1, int minutesToTelenor, int minutesToVivacom,
-                                     int minutesInRoaming, int overIncludeMb, int mbInEU, int mbOutEU, decimal otherFee, decimal discount)
+        public static decimal Result(Fees fees)
         {
-            decimal result = monthlyFee;
+            decimal result = fees.MonthlyFee;
 
             // Add SMS sum to result
-            if (numberSms < 50)
+            if (fees.NumberSms < 50)
             {
-                result += numberSms * 0.18m;
+                result += fees.NumberSms * 0.18m;
             }
-            else if (numberSms >= 50 && numberSms <= 100)
+            else if (fees.NumberSms >= 50 && fees.NumberSms <= 100)
             {
-                result += numberSms * 0.16m;
+                result += fees.NumberSms * 0.16m;
             }
             else
             {
-                result += numberSms * 0.11m;
+                result += fees.NumberSms * 0.11m;
             }
 
             // Add MMS sum to result
-            if (numberMms < 50)
+            if (fees.NumberMms < 50)
             {
-                result += numberMms * 0.25m;
+                result += fees.NumberMms * 0.25m;
             }
-            else if (numberMms >= 50 && numberMms <= 100)
+            else if (fees.NumberMms >= 50 && fees.NumberMms <= 100)
             {
-                result += numberMms * 0.23m;
+                result += fees.NumberMms * 0.23m;
             }
             else
             {
-                result += numberMms * 0.18m;
+                result += fees.NumberMms * 0.18m;
             }
 
-            result += overIncludeMinutesA1 * 0.03m;
-            result += (minutesToTelenor + minutesToVivacom) * 0.09m;
-            result += minutesInRoaming * 0.15m;
-            result += overIncludeMb * 0.02m;
-            result += mbInEU * 0.05m;
-            result += mbOutEU * 0.20m;
-            result += otherFee;
-            result -= discount;
+            result += fees.OverIncludeMinutesA1 * 0.03m;
+            result += (fees.MinutesToTelenor + fees.MinutesToVivacom) * 0.09m;
+            result += fees.MinutesInRoaming * 0.15m;
+            result += fees.OverIncludeMb * 0.02m;
+            result += fees.MbInEU * 0.05m;
+            result += fees.MbOutEU * 0.20m;
+            result += fees.OtherFee;
+            result -= fees.Discount;
 
             return result;
         }
